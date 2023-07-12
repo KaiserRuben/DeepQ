@@ -12,6 +12,7 @@ import {IonApp, IonRouterOutlet} from '@ionic/vue';
 a {
   text-decoration: none;
   color: var(--ion-color-secondary) !important;
+  z-index: 2;
 }
 
 a:hover {
