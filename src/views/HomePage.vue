@@ -45,6 +45,7 @@ let lastClick = setTimeout(() => showHelper.value = true, 1000);
 function nextQuestion() {
   // hide helper
   showHelper.value = false;
+  clearTimeout(lastClick)
   lastClick = setTimeout(() => showHelper.value = true, 10000);
 
   // fade out
@@ -91,7 +92,7 @@ onMounted(() => {
 .question {
   font-family: Montserrat, sans-serif;
   font-weight: 400;
-  font-size: 1.5rem;
+  font-size: 1.2rem;
 
   position: absolute;
   top: 50%;
