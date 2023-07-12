@@ -24,16 +24,16 @@ def main():
     init_messanges_with_json()
 
     questions_de = get_questions(gpt_model, 100)
-    array_to_json(questions_de, Path("../public/questions_de.json"))
+    array_to_json(questions_de, Path("../src/data/questions_de.json"))
 
     questions_en = translate_questions(questions_de)
-    array_to_json(questions_en, Path("../public/questions_en.json"))
+    array_to_json(questions_en, Path("../src/data/questions_en.json"))
 
 
 def init_messanges_with_json():
     # check if json file exists
-    if Path("../public/questions_de.json").exists():
-        with open(Path("../public/questions_de.json"), "r") as file:
+    if Path("../src/data/questions_de.json").exists():
+        with open(Path("../src/data/questions_de.json"), "r") as file:
             for question in json.load(file):
                 messages.append({"role": "assistant", "content": question})
                 messages.append({"role": "user", "content": "w"})
