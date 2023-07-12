@@ -1,6 +1,6 @@
 <template>
   <ion-page>
-    <ion-content :fullscreen="true">
+    <ion-content :fullscreen="true" :scroll-y="false">
       <div class="content" @click="nextQuestion">
 
         <div :class="showHelper?'helper':'hidden'">
@@ -11,14 +11,15 @@
             Click on the screen to see the next question.
           </span>
         </div>
-        <div class="question" ref="questionElement">
-          {{ questions[i] }}
-        </div>
+
         <div>
           <router-link to="/de" class="active">DE</router-link>
           |
           <router-link to="/en">EN</router-link>
         </div>
+      </div>
+      <div class="question" ref="questionElement">
+        {{ questions[i] }}
       </div>
     </ion-content>
   </ion-page>
@@ -92,6 +93,12 @@ onMounted(() => {
   font-weight: 400;
   font-size: 1.5rem;
 
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  max-width: 90vw;
+
   color: var(--ion-color-primary);
 
   text-align: center;
@@ -102,15 +109,14 @@ onMounted(() => {
 .content {
   height: 100vh;
   width: 100vw;
-
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex-direction: column;
-
-  padding: 10% 5%;
+  padding: 5% 5%;
   cursor: pointer;
   transition: 0.5s;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
 }
 .helper{
   opacity: 1;
