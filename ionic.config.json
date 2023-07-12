@@ -1,0 +1,7 @@
+{
+  "name": "deepq",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "vue-vite"
+}
