@@ -118,6 +118,10 @@ onMounted(() => {
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1;
 }
 .helper{
   opacity: 1;
