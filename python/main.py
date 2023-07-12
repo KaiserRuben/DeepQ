@@ -11,23 +11,32 @@ gpt_model = "gpt-3.5-turbo-16k"
 gpt_model_4 = "gpt-4-32k"
 messages = [
     {"role": "system",
-     "content": "Du generierst Fragen für ein Spiel. Die Fragen sind persönlich tiefgründig und meistens erst, ab und zu aber auch ein bisschen lustig."
+     "content": "Du generierst Fragen für ein Spiel. Die Fragen sind persönlich, tiefgründig und kontrovers."
                 "Die Idee ist, dass man über die Fragen diskutieren kann."
                 "Beispiele sind: 'Was macht dir aktuell im Leben am meisten Sorgen?' oder "
                 "'Auf welche Errungenschaft bist du in den letzten Monaten besonders stolz?'"
                 "Immer wenn ich 'w' schreibe, generierst du eine neue Frage."
      }
 ]
+questions_de = []
 
 
-def main():
-    init_messanges_with_json()
+def main(append=True, generate=True, translate=True):
+    global questions_de
+    if append:
+        init_messanges_with_json()
 
-    questions_de = get_questions(gpt_model, 100)
-    array_to_json(questions_de, Path("../src/data/questions_de.json"))
+    if generate:
+        questions_de = get_questions(gpt_model, 50)
+        array_to_json(questions_de, Path("../src/data/questions_de.json"))
 
-    questions_en = translate_questions(questions_de)
-    array_to_json(questions_en, Path("../src/data/questions_en.json"))
+    if translate:
+        if len(questions_de) == 0:
+            with open(Path("../src/data/questions_de.json"), "r") as file:
+                questions_de = json.load(file)
+
+        questions_en = translate_questions(questions_de)
+        array_to_json(questions_en, Path("../src/data/questions_en.json"))
 
 
 def init_messanges_with_json():
